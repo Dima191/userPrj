@@ -1,0 +1,13 @@
+\c temp;
+CREATE ROLE usr_admins;
+CREATE USER usr_admin WITH password 'qwerty';
+
+REVOKE CREATE ON SCHEMA PUBLIC FROM PUBLIC;
+REVOKE ALL ON DATABASE temp FROM PUBLIC;
+
+GRANT USAGE ON SCHEMA PUBLIC TO usr_admins;
+GRANT CREATE ON SCHEMA PUBLIC TO usr_admins;
+GRANT ALL ON DATABASE temp TO usr_admins;
+GRANT usr_admins TO usr_radmin;
+
+ALTER DATABASE temp OWNER TO usr_admin;

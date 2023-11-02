@@ -30,7 +30,7 @@ func (h *Handler) Register(r *gin.Engine) {
 
 func (h *Handler) FindAll() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		users, err := h.rep.FindAll(context.TODO())
+		users, err := h.rep.FindAll(context.Background())
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}
@@ -43,7 +43,7 @@ func (h *Handler) FindByEmail() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		email := c.Param("email")
 
-		usr, err := h.rep.FindByEmail(context.TODO(), email)
+		usr, err := h.rep.FindByEmail(context.Background(), email)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}
@@ -67,7 +67,7 @@ func (h *Handler) SignUp() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}
 
-		id, err := h.rep.SignUp(context.TODO(), *usr)
+		id, err := h.rep.SignUp(context.Background(), *usr)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}
@@ -83,7 +83,7 @@ func (h *Handler) SignIn() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}
 
-		token, err := h.rep.SignIn(context.TODO(), usr)
+		token, err := h.rep.SignIn(context.Background(), usr)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		}

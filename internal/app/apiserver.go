@@ -29,7 +29,7 @@ func NewAPIServer(cfg *Config, l *logger.Logger) *APIServer {
 
 func (s *APIServer) Start() error {
 	stCfg := s.cfg.Store
-	pool, err := postgresql.NewClient(context.TODO(), fmt.Sprintf(connStr,
+	pool, err := postgresql.NewClient(context.Background(), fmt.Sprintf(connStr,
 		stCfg.UserName,
 		stCfg.Password,
 		stCfg.Host,
